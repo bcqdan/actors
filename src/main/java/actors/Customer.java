@@ -34,6 +34,7 @@ public final class Customer {
             return;
         }
         happy = true;
+        eventBus.unregister(this);
         eventBus.post(new CustomerDoneEvent(id));
     }
 
@@ -43,6 +44,7 @@ public final class Customer {
             return;
         }
         happy = false;
+        eventBus.unregister(this);
         eventBus.post(new CustomerDoneEvent(id));
     }
 

@@ -14,18 +14,18 @@ public class Waiter {
     }
 
     @Subscribe
-    public void receive(OrderPieEvent orderPieEvent) {
+    public void process(OrderPieEvent orderPieEvent) {
         eventBus.post(new SendPieEvent(orderPieEvent.customerId()));
     }
 
     @Subscribe
-    public void receive(DeliverPieEvent deliverPieEvent) {
+    public void process(DeliverPieEvent deliverPieEvent) {
         eventBus.post(new PlacePieOnTableEvent(deliverPieEvent.customerId()));
-        eventBus.post(new BillCustomerEvent(deliverPieEvent.customerId(), 1));
+//        eventBus.post(new BillCustomerEvent(deliverPieEvent.customerId(), 1));
     }
 
     @Subscribe
-    public void receive(DeliverNoPieEvent deliverNoPieEvent) {
+    public void process(DeliverNoPieEvent deliverNoPieEvent) {
         eventBus.post(new SorryEvent(deliverNoPieEvent.customerId()));
     }
 
